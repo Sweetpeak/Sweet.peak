@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #543927;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.product {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+}
+
+.product img {
+    width: 100%; /* Підтверджуємо ширину */
+    height: 200px; /* Встановлюємо однакову висоту */
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product h2, .product p, .product .price {
+    margin: 10px 0;
+}
+
+.product .price {
+    font-size: 1.5em;
+    color: #e74c3c;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+footer {
+    background-color: #543927;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
