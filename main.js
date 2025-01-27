@@ -3,8 +3,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     products.forEach(product => {
         const images = product.querySelectorAll('.product-images img');
-        let currentIndex = 0; // ініціалізація змінної
+        let currentIndex = 0;
         let interval;
+
+        // Показати перше зображення при завантаженні сторінки
+        images[currentIndex].classList.add('active');
 
         // Функція для зміни зображень
         function changeImage() {
@@ -13,12 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
             images[currentIndex].classList.add('active');
         }
 
-        // Залишаємо основне зображення відкритим
-        images[currentIndex].classList.add('active');
-
-        // Запуск зміни зображень через 4 секунди після наведення
+        // Запуск зміни зображень через 3 секунди при наведенні
         product.addEventListener('mouseenter', function() {
-            interval = setInterval(changeImage, 4000); // змінюємо зображення кожні 4 секунди
+            interval = setInterval(changeImage, 3000);
         });
 
         // Зупинка зміни зображень при виведенні курсору
