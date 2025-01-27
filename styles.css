@@ -51,18 +51,43 @@ nav ul li a {
     width: calc(33.333% - 20px);
     box-sizing: border-box;
     position: relative;
-    transition: all 0.3s ease-in-out;
+    overflow: hidden; /* Забороняємо вихід зображень за межі */
 }
 
 .product img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Покриває всю область, зберігаючи пропорції */
-    transition: transform 0.3s ease-in-out;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out; /* Плавна анімація при зміні масштабу */
 }
 
-.product:hover img.main-img {
-    transform: scale(1.1);
+/* Збільшення картинки при наведенні */
+.product:hover img {
+    transform: scale(1.2); /* Збільшуємо картинку на 20% */
+}
+
+/* Сховище зображень */
+.product-images {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Висота контейнера зображень */
+    overflow: hidden; /* Зображення не повинні виходити за межі */
+}
+
+.product-images img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Зберігаємо пропорції зображення */
+    opacity: 0; /* Зображення початково приховані */
+    transition: opacity 1s ease-in-out;
+}
+
+.product-images img.active {
+    opacity: 1; /* Тільки активне зображення видиме */
 }
 
 .product-description {
@@ -113,28 +138,4 @@ footer {
     .product {
         width: 100%; /* 1 товар в ряд */
     }
-}
-
-/* Сховище зображень */
-.product-images {
-    position: relative;
-    width: 100%;
-    height: 200px; /* Фіксована висота */
-    overflow: hidden; /* Щоб зображення не виходили за межі */
-}
-
-.product-images img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Центрує зображення */
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Забезпечує покриття всього контейнера */
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.product-images img.active {
-    opacity: 1;
 }
