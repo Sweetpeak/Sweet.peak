@@ -1,70 +1,90 @@
+/* Загальні стилі */
 body {
     font-family: Arial, sans-serif;
-    background-image: url('images/FON.jpg'); /* Заміни на шлях до твоєї картинки */
-    background-size: cover; /* Зменшує або збільшує зображення, щоб воно покривало весь екран */
-    background-position: center; /* Центрує зображення по горизонталі і вертикалі */
-    background-repeat: no-repeat; /* Забороняє повторення зображення */
+    background-image: url('images/FON.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #333;
     margin: 0;
     padding: 0;
 }
 
 header {
-    background-color: rgba(84, 57, 39, 0.8); /*  Додав прозорість для кращої читабельності на фоні */
+    background-color: rgba(84, 57, 39, 0.9);
     color: white;
     padding: 20px;
     text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
 }
 
 .products {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
 }
 
 .product {
-    background-color: rgba(255, 255, 255, 0.8); /* Додав прозорість для гармонії з фоном */
+    background-color: rgba(255, 255, 255, 0.8);
     border: 1px solid #ddd;
-    border-radius: 5px;
-    margin: 10px;
-    padding: 20px;
+    border-radius: 10px;
     text-align: center;
-    width: calc(33.333% - 40px);
+    width: calc(33.333% - 20px);
     box-sizing: border-box;
     position: relative;
-    overflow: hidden;
     transition: all 0.3s ease-in-out;
 }
 
 .product img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
+    height: 100%;
+    object-fit: cover; /* Покриває всю область, зберігаючи пропорції */
     transition: transform 0.3s ease-in-out;
 }
 
-.product:hover img {
+.product:hover img.main-img {
     transform: scale(1.1);
 }
 
 .product-description {
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.9); /* Невелика прозорість для гарного вигляду з фоном */
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, max-height 0.5s ease;
+    padding: 0 10px;
     color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
     margin-top: 10px;
 }
 
 .product:hover .product-description {
-    max-height: 200px; /* Адаптуй це значення відповідно до твого контенту */
     opacity: 1;
+    visibility: visible;
+    max-height: 1000px;
+    padding: 10px;
 }
 
-.product h2, .product p, .product .price {
+.product h2 {
+    font-size: 1.2em;
     margin: 10px 0;
 }
 
@@ -72,12 +92,49 @@ header {
     font-size: 1.5em;
     color: #543927;
     font-weight: bold;
-    text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 footer {
-    background-color: rgba(84, 57, 39, 0.8); /* Додав прозорість для поєднання з фоном */
+    background-color: rgba(84, 57, 39, 0.9);
     color: white;
     text-align: center;
     padding: 10px 0;
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .product {
+        width: calc(50% - 20px); /* 2 товари в ряд */
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        width: 100%; /* 1 товар в ряд */
+    }
+}
+
+/* Сховище зображень */
+.product-images {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Фіксована висота */
+    overflow: hidden; /* Щоб зображення не виходили за межі */
+}
+
+.product-images img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Центрує зображення */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Забезпечує покриття всього контейнера */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.product-images img.active {
+    opacity: 1;
 }
